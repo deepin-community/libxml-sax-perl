@@ -1,0 +1,22 @@
+From: intrigeri <intrigeri@boum.org>
+Date: Sun, 21 Jul 2019 13:47:20 +0000
+Origin: https://github.com/grantm/XML-SAX/pull/4
+Subject: Fix another typo in POD
+
+---
+ lib/XML/SAX/Intro.pod | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/XML/SAX/Intro.pod b/lib/XML/SAX/Intro.pod
+index 2c66b3b..e3593b1 100644
+--- a/lib/XML/SAX/Intro.pod
++++ b/lib/XML/SAX/Intro.pod
+@@ -294,7 +294,7 @@ The handler is passed a structure containing just two entries:
+ 
+ =item Target
+ 
+-The target of the processing instrcution
++The target of the processing instruction
+ 
+ =item Data
+ 

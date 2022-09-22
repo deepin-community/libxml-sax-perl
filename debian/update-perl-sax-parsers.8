@@ -1,0 +1,177 @@
+.\" -*- nroff -*-
+.\" ----------------------------------------------------------------------
+.\" Copyright (c) 2001-2003 Ardo van Rangelrooij
+.\"
+.\" This is free software; see the GNU General Public Licence version 2
+.\" or later for copying conditions.  There is NO warranty.
+.\" ----------------------------------------------------------------------
+.\"
+.\" ----------------------------------------------------------------------
+.TH UPDATE-PERL-SAX-PARSERS 8 "Nov 2007" "0.3" "Debian"
+.\"
+.\" ----------------------------------------------------------------------
+.SH NAME
+update-perl-sax-parsers \- (de)register Perl SAX parser modules
+.\"
+.\" ----------------------------------------------------------------------
+.SH SYNOPSIS
+.B update-perl-sax-parsers
+.RI [ options ]
+.B --add
+.I parser_module
+.PP
+.B update-perl-sax-parsers
+.RI [ options ]
+.B --remove
+.I parser_module
+.PP
+.B update-perl-sax-parsers
+.RI [ options ]
+.B --update
+.\"
+.\" ----------------------------------------------------------------------
+.SH DESCRIPTION
+.B update-perl-sax-parsers
+inserts, updates and removes individual Perl SAX parser module info
+files in the directory
+.I /var/lib/libxml-sax-perl/ParserDetails.d
+and the overall Perl SAX parser modules info file
+.IR /etc/perl/XML/SAX/ParserDetails.ini .
+.\"
+.\" ----------------------------------------------------------------------
+.SH OPTIONS
+.TP
+.B --add
+Adds the per-module info file for the indicated Perl SAX parser module
+to the directory
+.IR /var/lib/libxml-sax-perl/ParserDetails.d .
+.TP
+.B --remove
+Removes the per-module info file for Perl SAX parser module from the
+directory
+.IR /var/lib/libxml-sax-perl/ParserDetails.d .
+.TP
+.B --update
+updates the overall Perl SAX parser modules info file
+.IR /etc/perl/XML/SAX/ParserDetails.ini .
+The modules will be listed in an order of ascending priority. See
+the PARSER PRIORITIES section below.
+
+The file will be managed with
+.B ucf(1) ,
+unless the
+.B --file
+option is used. See also the
+.B --ucf
+option below.
+.TP
+.B --directory
+When used with
+.B --add
+or with
+.B --remove
+indicates the ParserDetails.d directory to use for storing the
+per-module Perl SAX parser module info file.  When used one or more
+times with
+.B --update
+indicates the ParserDetails.d directories to be used as source for
+generating the ParserDetails.ini file.  Default is
+.IR /var/lib/libxml-sax-perl/ParserDetails.d .
+.TP
+.B --file
+Indicates the ParserDetails.ini file up be updated.  Default is
+.IR /etc/perl/XML/SAX/ParserDetails.ini .
+.TP
+.B --priority XX
+Specifies the priority of the SAX parser module to be added
+removed.  The priority will be encoded
+to the filename of the ParserDetails.d entry. See the PARSER PRIORITIES
+section below.
+
+This option was added in version 0.3 of 
+.B update-perl-sax-parsers .
+Use the value "0" to disable the encoding and match the behaviour
+of earlier versions of the script.
+
+The default priority value is 50, unless
+.B --directory
+was specified, in which case the default is 0 (disabled.)
+.TP
+.B --ucf X
+Forcibly enable (X != 0) or disable (X = 0) of
+.B ucf(1) .
+By default, 
+.B ucf(1)
+will be used to manage the ParserDetails.ini file when
+.B --file
+is
+.IR not
+specified.
+.TP
+.B --quiet
+Prevents any diagnostic output.
+.TP
+.B --test
+Prevents the modification of any files and enables debugging mode.
+.TP
+.B --version
+Displays the version information and exits.
+.TP
+.B --help
+Display the usage information and exits.
+.\"
+.\" ----------------------------------------------------------------------
+.SH PARSER PRIORITIES
+Starting with version 0.3 of 
+.B update-perl-sax-parsers ,
+the parsers are assigned a priority value that is encoded into the names
+of the files in the ParserDetails.d directory. Specifically, the file
+name will be "XX-Some::Module", where XX denotes the priority and Some::Module
+is the name of the parser module.
+
+When
+.B --update
+is called, the parsers are listed in an order of ascending priority
+into the 
+.IR ParserDetails.ini
+file. The last parser in the file, ie. the one with the highest priority,
+is the
+.B default
+XML::SAX parser.
+
+Parsers with the same priority are sorted alphabetically by their name.
+This is contrary to the behaviour of earlier versions, where the
+sort order was undefined and depended on the underlying file system.
+.\"
+.\" ----------------------------------------------------------------------
+.SH NOTE
+Installing the original package from CPAN into /usr/local breaks the
+Debian package, since the former is in Perl's @INC before the latter.
+So, please don't do this.
+
+If there's a new version of XML::SAX simply file a wishlist against
+the Debian package and wait for the update.
+.\"
+.\" ----------------------------------------------------------------------
+.SH "SEE ALSO"
+.TP
+/usr/share/doc/libxml-sax-perl/README.Debian
+.\"
+.\" ----------------------------------------------------------------------
+.SH AUTHORS
+Ardo van Rangelrooij <ardo@debian.org>
+
+Niko Tyni            <ntyni@iki.fi>
+.\"
+.\" ----------------------------------------------------------------------
+.SH COPYRIGHT
+Copyright \(co 2001-2003 Ardo van Rangelrooij
+
+Copyright \(co 2007 Niko Tyni
+.PP
+This is free software; see the GNU General Public Licence version 2 or
+later for copying conditions.  There is
+.I no
+warranty.
+.\"
+.\" ----------------------------------------------------------------------

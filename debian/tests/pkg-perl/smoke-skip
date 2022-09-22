@@ -1,0 +1,3 @@
+# these tests expect no ParserDetails.ini
+t/20factory.t
+t/21saxini.t

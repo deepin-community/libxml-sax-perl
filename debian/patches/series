@@ -1,0 +1,6 @@
+skip-test-with-nonfree-file
+charset-decoding
+parserdetails-debian
+pod-spelling
+Fix-another-typo-in-POD.patch
+sort-ini-entries

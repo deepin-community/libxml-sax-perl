@@ -1,0 +1,16 @@
+Author: gregor herrmann <gregoa@debian.org>
+Description: fix spelling errors in POD
+Origin: https://github.com/grantm/XML-SAX/pull/4
+Forwarded: yes
+
+--- a/lib/XML/SAX/Intro.pod
++++ b/lib/XML/SAX/Intro.pod
+@@ -242,7 +242,7 @@
+ 
+ =head2 characters
+ 
+-The characters callback may be called in serveral circumstances. The
++The characters callback may be called in several circumstances. The
+ most obvious one is when seeing ordinary character data in the markup.
+ But it is also called for text in a CDATA section, and is also called
+ in other situations. A SAX parser has to make no guarantees whatsoever

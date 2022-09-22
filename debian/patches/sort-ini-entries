@@ -1,0 +1,18 @@
+From: Roland Clobus <rclobus@rclobus.nl>
+Date: Wed, 1 Sep 2021 15:10:00+0200
+Subject: Sort the entries in the .ini-files. This generates the files with a constant content
+Bug-Debian: https://bugs.debian.org/993444
+Forwarded: https://rt.cpan.org/Ticket/Display.html?id=139175
+Bug: https://rt.cpan.org/Ticket/Display.html?id=139175
+
+--- a/lib/XML/SAX/Debian.pm
++++ b/lib/XML/SAX/Debian.pm
+@@ -31,7 +31,7 @@
+ 
+     foreach my $p (@{ $class->parsers }) {
+         print $fh "[$p->{Name}]\n";
+-        foreach my $key (keys %{$p->{Features}}) {
++        foreach my $key (sort keys %{$p->{Features}}) {
+             print $fh "$key = $p->{Features}{$key}\n";
+         }
+         print $fh "\n";
